@@ -1,0 +1,10 @@
+<p>data works!</p>
+<form [formGroup]="formgup" (ngSubmit)="addData()">
+
+    <input type="text" formControlName="id" placeholder="enter the id" />
+    <input type="text" formControlName="name" placeholder="enter the name" />
+    <input type="text" formControlName="email"  placeholder="enter the email"/>
+    <input type="text" formControlName="password" placeholder="enter the password"/>
+    <button>Submit</button>
+
+</form>
