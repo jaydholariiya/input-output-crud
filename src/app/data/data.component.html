@@ -1,10 +1,14 @@
-<p>data works!</p>
-<form [formGroup]="formgup" (ngSubmit)="addData()">
 
-    <input type="text" formControlName="id" placeholder="enter the id" />
-    <input type="text" formControlName="name" placeholder="enter the name" />
-    <input type="text" formControlName="email"  placeholder="enter the email"/>
-    <input type="text" formControlName="password" placeholder="enter the password"/>
-    <button>Submit</button>
+<button (click)="sendArray()">Show Both Component Record</button>
 
-</form>
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    <tr *ngFor="let data of arrayToSend">
+        <td>{{data.id}}</td>
+        <td>{{data.name}}</td>
+    </tr>
+   
+</table>

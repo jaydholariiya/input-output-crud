@@ -11,23 +11,26 @@ import { DataComponent } from "./data/data.component";
     imports: [CommonModule, RouterOutlet, DataComponent]
 })
 export class AppComponent {
-  title = 'input-output';
 
-    gettingData : any[] = [];
-  
-  constructor() {}
+receivedArray: any[] = [];
 
-  DataGet(data : any){
-    this.gettingData = data;
-    console.warn("add", this.gettingData); 
+receiveArray(array: any) {
+  this.receivedArray = array;
+  console.warn("got it" , this.receivedArray);
+}
+
+updateData() {
+   
+    const updatedData: any[] = [{
+      id: 0, name: "updated List 0"
+    }, {
+      id: 1, name: "updated List 1"
+    }, {
+      id: 2, name: "updated List 2"
+    }];
+
+    this.receivedArray = updatedData;
   }
-  ParticularIDValue : any;
-  UpdateItem(data : any){
-    console.warn(data);
-    this.ParticularIDValue = data.id;
-    let dataa = (Number(this.ParticularIDValue));
-   console.log( typeof dataa );
-    
-    
-  }
+
+
 }

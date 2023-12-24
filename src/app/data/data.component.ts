@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -10,30 +10,31 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
   styleUrl: './data.component.css'
 })
 export class DataComponent {
-    @Output() customEvent = new EventEmitter<string>();
-    @Input() updatePerId : any;
-    formgup : FormGroup;
-    addDataVarible : any = [];
-    constructor(private fb : FormBuilder){
-        this.formgup = this.fb.group({
-            name : [''],
-            id : [''],
-            email : [''],
-            password : ['']   
-        })
-        this.updateData();
+    @Output() arrayEmitter = new EventEmitter<any>();
+    arrayToSend: any;
+    @Input() receiveArray : any;
     
+    ngOnChanges(changes: any): void {
+     
+        if (changes.hasOwnProperty('receiveArray')) {
+            this.arrayToSend = this.receiveArray;
+            console.warn(this.arrayToSend , "Updated Data Got It!!");
+            
+            }
+          
+        
     }
-    addData(){
-        console.log(this.formgup.value)
-        this.addDataVarible.push(this.formgup.value)
-        console.warn(this.addDataVarible);
-        this.customEvent.emit(this.addDataVarible);
+  sendArray() {
+  
+     this.arrayToSend = [{
+        id : 0 , name : "List 0"      
+      },{
+        id : 1 , name : "List 1"
+      },{
+        id : 2 , name : "List 2"
+      }];
+    this.arrayEmitter.emit(this.arrayToSend);
+    
 
-    }
-    updateData(){
-        console.warn("data",this.updatePerId); 
-    }
-   
-
+  }
 }

@@ -1,19 +1,18 @@
-<h1 style="text-align: center;">HTML PAGE</h1>
-<app-data (customEvent)="DataGet($event)" [updatePerId]="ParticularIDValue"></app-data>
-<table border="2">
+
+<app-data (arrayEmitter)="receiveArray($event)" [receiveArray]="receivedArray" ></app-data>
+
+
+ <table border="1">
     <tr>
         <th>Id</th>
         <th>Name</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Update item</th>
+        
     </tr>
-    <tr *ngFor="let data of gettingData">
+    <tr *ngFor="let data of receivedArray">
         <td>{{data.id}}</td>
-        <td>{{data.name}}</td>
-        <td>{{data.email}}</td>
-        <td>{{data.password}}</td>
-        <td><button (click)="UpdateItem(data)">Updated Item</button></td>
+        <td>{{data.name}}</td> 
     </tr>
-</table>
+    </table>
+    <button (click)="updateData()">Update The Data In Parent Side</button>
+      
 <router-outlet></router-outlet>
